@@ -1,4 +1,5 @@
 <template>
+  <button class="btn btn-danger close-button" @click="closeMicroservice()"><i class="bi bi-x"></i></button>
   <enemy-button :git="git" :initCards="initCards" :onEnemyTurn="onEnemyTurn" ref="enemyButton"></enemy-button>
   <git-view-vue :git="git"></git-view-vue>
   <card-stack :git="git" :onError="onError" :turn="turn" ref="cardStack"></card-stack>
@@ -35,6 +36,10 @@ export default {
     onEnemyTurn() {
       this.turn = false;
     },
+    closeMicroservice() {
+      console.log('closing microservice');
+      window.parent.postMessage('CLOSE ME');
+    },
   },
 };
 </script>
@@ -46,6 +51,7 @@ body {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+  overflow: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -61,5 +67,11 @@ body {
   z-index: 100;
   font-weight: bold;
   color: white;
+}
+
+.close-button {
+  position: fixed;
+  top: 24px;
+  right: 24px;
 }
 </style>
