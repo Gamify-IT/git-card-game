@@ -68,4 +68,4 @@ docker rm git-card-game
 
 ### Screenshot
 
-![git-card-game screenshot]()
+![git-card-game screenshot](https://user-images.githubusercontent.com/44726248/171060580-dd90d220-0c1d-4933-bbac-429ac06218ad.png)
