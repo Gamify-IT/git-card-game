@@ -1,6 +1,6 @@
 # git-card-game
 
-a game to practice git commands by playing cards with git commands against a npc. 
+a game to practice git commands by playing cards with git commands against an npc. 
 
 ## Development
 
