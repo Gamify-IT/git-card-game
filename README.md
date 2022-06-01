@@ -1,24 +1,73 @@
 # git-card-game
 
-## Project setup
+a game to practice git commands by playing cards with git commands against an npc. 
+
+## Development
+
+### Getting started
+
+Clone the repository  
+```sh
+git clone https://github.com/Gamify-IT/git-card-game.git
 ```
+
+Install the dependencies  
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+### Compile and Hot-Reload for Development
+
+```sh
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Build
+
+Build the Docker-Container
+```sh
+docker build -t git-card-game-dev .
 ```
-npm run build
+And run it at port 8000 with
+```sh
+docker run -d -p 8000:7001 --name git-card-game-dev git-card-game-dev
 ```
 
-### Lints and fixes files
+To access to build project you need to have a reverse proxy that maps it to `localhost/minigames/git-card-game`.
+
+To monitor, stop and remove the container you can use the following commands:
+```sh
+docker ps -a -f name=git-card-game-dev
 ```
-npm run lint
+```sh
+docker stop git-card-game-dev
+```
+```sh
+docker rm git-card-game-dev
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## User manual
+
+Run the docker container with the following command at port 8000:
+```sh
+docker run -d -p 8000:7001 --name git-card-game ghcr.io/gamify-it/git-card-game:latest
+```
+Now you can access it at [http://localhost:8000](http://localhost:8000).  
+To access it externally replace localhost with your IP.  
+
+To monitor the container you can use the following command:
+```sh
+docker ps -a -f name=git-card-game
+```
+To stop the container you can use the following command:
+```sh
+docker stop git-card-game
+```
+To remove the container you can use the following command:
+```sh
+docker rm git-card-game
+```
+
+### Screenshot
+
+![git-card-game screenshot](https://user-images.githubusercontent.com/44726248/171060580-dd90d220-0c1d-4933-bbac-429ac06218ad.png)
