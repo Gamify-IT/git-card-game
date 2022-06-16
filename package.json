@@ -20,11 +20,11 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.1.0",
     "eslint-plugin-flow": "^2.29.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-typescript": "^0.14.0",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
     "eslint-plugin-vue": "^8.0.3",
     "typescript": "^4.6.4"
   },
