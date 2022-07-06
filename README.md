@@ -33,8 +33,6 @@ And run it at port 8000 with
 docker run -d -p 8000:7001 --name git-card-game-dev git-card-game-dev
 ```
 
-To access to build project you need to have a reverse proxy that maps it to `localhost/minigames/git-card-game`.
-
 To monitor, stop and remove the container you can use the following commands:
 ```sh
 docker ps -a -f name=git-card-game-dev
