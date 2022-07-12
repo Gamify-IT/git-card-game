@@ -29,14 +29,16 @@ export default {
       this.btnText = 'Finish your turn';
       this.initCards();
     },
-    async click() {
-      this.beforeClick();
-
+    fillCards() {
       while (this.cards.length !== 5) {
         const randomCard = getRandomCard();
         if (this.cards.filter((card) => card.command === randomCard.command).length >= 2) continue;
         this.cards.push(randomCard);
       }
+    },
+    async click() {
+      this.beforeClick();
+      this.fillCards();
 
       while (this.cards.length !== 0) {
         let cardUsed = false;
@@ -80,9 +82,6 @@ export default {
   left: 50%;
 
   transform: translate(-50%, 100px);
-}
-
-.enemy-button {
 }
 
 .score {

@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-danger close-button" @click="closeMicroservice()"><i class="bi bi-x"></i></button>
+  <button class="btn btn-danger close-button" @click="closeMicroservice()"><em class="bi bi-x"></em></button>
   <enemy-button :git="git" :initCards="initCards" :onEnemyTurn="onEnemyTurn" ref="enemyButton"></enemy-button>
   <git-view-vue :git="git"></git-view-vue>
   <card-stack :git="git" :onError="onError" :turn="turn" ref="cardStack"></card-stack>
@@ -24,7 +24,6 @@ export default {
       turn: true,
     };
   },
-  mounted() {},
   methods: {
     initCards() {
       this.turn = true;
