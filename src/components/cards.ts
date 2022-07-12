@@ -2,9 +2,9 @@ import { GitContext } from './git';
 
 export interface Card {
   id: number;
-  color: String;
-  command: String;
-  description: String;
+  color: string;
+  command: string;
+  description: string;
   /**
    * How much points a card gives.
    *
