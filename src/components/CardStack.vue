@@ -20,6 +20,7 @@
 import SingleCard from './SingleCard.vue';
 import { Card, getRandomCard } from './cards';
 import { GitContext } from './git';
+import { maxCards } from './config';
 
 export default {
   components: { SingleCard },
@@ -39,7 +40,7 @@ export default {
   },
   methods: {
     initCards() {
-      while (this.cards.length !== 5) {
+      while (this.cards.length !== maxCards) {
         const randomCard = getRandomCard();
         if (this.cards.filter((card) => card.command === randomCard.command).length >= 2) continue;
         this.cards.push(randomCard);

@@ -1,5 +1,8 @@
 <template>
   <div @click="click()" :class="'card ' + (playable ? 'playable-card' : '')" :style="'background-color: ' + card.color">
+    <div class="icon" :v-if="card.icon != null">
+      <svg v-html="card.icon"></svg>
+    </div>
     <h1>{{ card.command }}</h1>
     <span>{{ card.description }}</span>
   </div>
@@ -38,16 +41,15 @@ export default {
 <style scoped>
 .card {
   display: flex;
-  justify-content: center;
   align-items: center;
 
-  width: 270px;
-  height: 180px;
+  width: 200px;
+  height: 280px;
   border-radius: 14px;
 
   background: gray;
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: 'Courier New', Courier, monospace;
 
   margin: 20px;
@@ -59,9 +61,22 @@ export default {
   transition: transform linear 100ms;
 }
 
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  fill: white;
+}
+
+.icon svg {
+  transform: scale(3);
+  width: 16px;
+  height: 16px;
+}
 .card h1 {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .card.playable-card {

@@ -8,6 +8,7 @@
 <script lang="ts">
 import { GitContext } from './git';
 import { Card, getRandomCard } from './cards';
+import { maxCards } from './config';
 
 export default {
   props: {
@@ -30,7 +31,7 @@ export default {
       this.initCards();
     },
     fillCards() {
-      while (this.cards.length !== 5) {
+      while (this.cards.length !== maxCards) {
         const randomCard = getRandomCard();
         if (this.cards.filter((card) => card.command === randomCard.command).length >= 2) continue;
         this.cards.push(randomCard);

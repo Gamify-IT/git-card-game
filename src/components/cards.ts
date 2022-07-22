@@ -1,10 +1,12 @@
 import { GitContext } from './git';
+import * as gitIcons from '@primer/octicons';
 
 export interface Card {
   id: number;
   color: string;
   command: string;
   description: string;
+  icon?: string;
   /**
    * How much points a card gives.
    *
@@ -19,6 +21,7 @@ export function getTouchCard(fileName: string): Card {
     color: '#1D4ED8',
     command: `touch ${fileName}`,
     description: `Adds a file. +1`,
+    icon: gitIcons['file-added'].heights[16].path,
     score(gitContext) {
       gitContext.files[fileName] = '';
       return 1;
@@ -32,6 +35,7 @@ export function getRmCard(fileName: string): Card {
     color: '#1D4ED8',
     command: `rm ${fileName}`,
     description: `Removes a file. +1`,
+    icon: gitIcons['file-removed'].heights[16].path,
     score(gitContext) {
       if (!(fileName in gitContext.files)) {
         return -1;
@@ -48,6 +52,7 @@ export function getNanoCard(fileName: string): Card {
     color: '#1D4ED8',
     command: `nano ${fileName}`,
     description: `Edits or adds a file. +1`,
+    icon: gitIcons.pencil.heights[16].path,
     score(gitContext) {
       gitContext.files[fileName] = 'changed';
       return 1;
@@ -61,6 +66,7 @@ export function getGitAddCard(fileName: string): Card {
     color: '#4ADE80',
     command: `git add ${fileName}`,
     description: `Stages a file. +4`,
+    icon: gitIcons['plus-circle'].heights[16].path,
     score(gitContext) {
       if (canAddFile(gitContext, fileName)) {
         return 4;
@@ -77,6 +83,7 @@ export function gitGitResetCard(fileName: string): Card {
     color: '#16A34A',
     command: `git reset ${fileName}`,
     description: `Unstages a file. +4`,
+    icon: gitIcons['reply'].heights[16].path,
     score(gitContext) {
       if (gitContext.stagedFiles.includes(fileName)) {
         gitContext.stagedFiles = gitContext.stagedFiles.filter((file) => file !== fileName);
@@ -113,6 +120,7 @@ export function getGitAddAllCard(): Card {
     color: '#FB923C',
     command: `git add .`,
     description: `Stages all files. +2 for each untracked file`,
+    icon: gitIcons['diff-added'].heights[16].path,
     score(gitContext) {
       if (JSON.stringify(gitContext.head) === JSON.stringify(gitContext.files)) {
         return -1;
@@ -135,6 +143,7 @@ export function getGitStatusCard(): Card {
     color: '#38BDF8',
     description: 'Displays the git status. +1 for each staged file',
     command: `git status`,
+    icon: gitIcons['question'].heights[16].path,
     score(gitContext) {
       return gitContext.stagedFiles.length;
     },
@@ -147,6 +156,7 @@ export function getGitLogCard(): Card {
     color: '#38BDF8',
     command: `git log`,
     description: 'Displays all commits. +1 for each commit',
+    icon: gitIcons['history'].heights[16].path,
     score(gitContext) {
       return gitContext.localCommits;
     },
@@ -159,6 +169,7 @@ export function getGitCommitCard(): Card {
     color: '#A855F7',
     command: `git commit -m "..."`,
     description: 'Commits all stages files and fails if no files are staged. +4 for each staged file.',
+    icon: gitIcons['git-commit'].heights[16].path,
     score(gitContext) {
       if (gitContext.stagedFiles.length === 0) {
         return -1;
@@ -177,6 +188,7 @@ export function getGitPush(): Card {
     color: '#A855F7',
     command: `git push`,
     description: 'Pushes all commits. +8 for each commit',
+    icon: gitIcons['upload'].heights[16].path,
     score(gitContext) {
       const score = gitContext.localCommits * 8;
       gitContext.localCommits = 0;
@@ -191,7 +203,7 @@ function id(): number {
 
 const fileNames = ['index.html', 'app.js', 'style.css', 'README.md'];
 
-const cardFactories = [getGitAddAllCard, getGitStatusCard, getGitLogCard, getGitCommitCard, getGitPush];
+const cardFactories = [getGitAddAllCard, getGitCommitCard, getGitPush];
 const cardFactoriesWithFileName = [getTouchCard, getRmCard, getNanoCard, getGitAddCard, gitGitResetCard];
 
 export function getRandomCard(): Card {
