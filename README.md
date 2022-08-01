@@ -30,7 +30,7 @@ docker build -t git-card-game-dev .
 ```
 And run it at port 8000 with
 ```sh
-docker run -d -p 8000:7001 --name git-card-game-dev git-card-game-dev
+docker run -d -p 8000:80 --name git-card-game-dev git-card-game-dev
 ```
 
 To monitor, stop and remove the container you can use the following commands:
@@ -48,7 +48,7 @@ docker rm git-card-game-dev
 
 Run the docker container with the following command at port 8000:
 ```sh
-docker run -d -p 8000:7001 --name git-card-game ghcr.io/gamify-it/git-card-game:latest
+docker run -d -p 8000:80 --name git-card-game ghcr.io/gamify-it/git-card-game:latest
 ```
 Now you can access it at [http://localhost:8000](http://localhost:8000).  
 To access it externally replace localhost with your IP.  
